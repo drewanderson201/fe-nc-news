@@ -30,17 +30,16 @@ export default function DetailedArticleCard() {
 
   if (isError) return <Error error={error} />;
 
-  // const formattedDate = new Date(article.created_at * 1000).toDateString();
-  // const formattedTime = new Date(forecast.dt * 1000).toTimeString();
+  const formattedTopic = article.topic[0].toUpperCase() + article.topic.slice(1).toLowerCase();
+  const formattedDate = new Date(article.created_at).toDateString();
 
   return (
     <div>
+      <hr />
       <div>
-        <p className="article-details">{article.topic.toUpperCase()}</p>
+        <p className="article-details">{formattedTopic}</p>
         <span className="details-divider"></span>
-        <p className="article-details">
-          {new Date(article.created_at).toDateString()}
-        </p>
+        <p className="article-details">{formattedDate}</p>
       </div>
 
       <h2>{article.title}</h2>

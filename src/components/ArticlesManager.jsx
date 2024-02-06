@@ -4,11 +4,11 @@ import { Routes, Route } from "react-router-dom";
 
 export default function ArticlesManager() {
   return (
-    <div>
+    <section className="articles-manager">
       <Routes>
         <Route path="/" element={<ArticlesList />} />
         <Route path="/articles/:article_id" element={<DetailedArticleCard />} />
       </Routes>
-    </div>
+    </section>
   );
 }
