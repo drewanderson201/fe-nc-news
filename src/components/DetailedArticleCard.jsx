@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getArticles } from "../utils/api";
+import { getArticles, patchArticle } from "../utils/api";
 import Loading from "./Loading";
 import Error from "./Error";
 import CommentsList from "./CommentsList";
@@ -41,6 +41,23 @@ export default function DetailedArticleCard() {
     showComments ? setShowComments(false) : setShowComments(true)
   }
 
+  const handleVote = (voteNum) => {
+    const updatedArticle = { inc_votes: voteNum };
+    patchArticle(article_id, updatedArticle).then((data) => {
+      setError(null)
+    }).catch((error)=>{
+      setArticle((currentArticle) => {
+        return { ...currentArticle, votes: currentArticle.votes - voteNum };
+      });
+      setIsError(true)
+      const errMsg = error.response.data.msg;
+      setError(errMsg);
+    });
+    setArticle((currentArticle)=>{
+      return { ...currentArticle, votes: currentArticle.votes + voteNum };
+    })
+  }
+
   return (
     <div>
       <hr />
@@ -62,13 +79,34 @@ export default function DetailedArticleCard() {
       />
       <p>{article.body}</p>
       <p>Votes: {article.votes}</p>
-      <button className="comments-button" onClick={handleCommentsButton}>
-        <p className="article-details">
-          {showComments ? "Hide Comments" : "Show Comments"}
-        </p>
-        <span className="details-divider"></span>
-        <p className="article-details">{article.comment_count}</p>
+
+      <button
+        className="article-button"
+        onClick={() => {
+          handleVote(1);
+        }}
+      >
+        <p className="article-likes">Like</p>
       </button>
+      <span className="likes-divider"></span>
+      <button
+        className="article-button"
+        onClick={() => {
+          handleVote(-1);
+        }}
+      >
+        <p className="article-likes">Dislike</p>
+      </button>
+      <div>
+        <button className="article-button" onClick={handleCommentsButton}>
+          <p className="article-details">
+            {showComments ? "Hide Comments" : "Show Comments"}
+          </p>
+          <span className="details-divider"></span>
+          <p className="article-details">{article.comment_count}</p>
+        </button>
+      </div>
+
       {showComments ? <CommentsList article_id={article_id} /> : null}
     </div>
   );

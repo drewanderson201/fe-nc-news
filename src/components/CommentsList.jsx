@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import CommentCard from "./CommentCard";
-import { getComments } from "../utils/api";
+import { getCommentsById } from "../utils/api";
 import Loading from "./Loading";
 import Error from "./Error";
 
@@ -12,16 +12,18 @@ export default function CommentsList({article_id}) {
 
 
       useEffect(()=>{
-        getComments(article_id).then((data) => {
-          const comments = data.comments;
-          setCommentsData(comments);
-          setIsLoading(false);
-        }).catch((error)=>{
+        getCommentsById(article_id)
+          .then((data) => {
+            const comments = data.comments;
+            setCommentsData(comments);
+            setIsLoading(false);
+          })
+          .catch((error) => {
             const errMsg = error.response.data.msg;
             setIsError(true);
             setError(errMsg);
             setIsLoading(false);
-        });
+          });
 
       },[])
 
