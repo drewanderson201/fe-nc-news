@@ -5,8 +5,11 @@ import './App.css'
 import Header from "./components/Header";
 import ArticlesManager from './components/ArticlesManager';
 import Navigation from './components/Navigation';
+import ArticlesList from "./components/ArticlesList"
+import DetailedArticleCard from "./components/DetailedArticleCard";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
+
 
 
 
@@ -18,8 +21,15 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/nav" element={<Navigation />} />
-        <Route path="*" element={<ArticlesManager />} />
+        <Route path="/" element={<Navigate to="/articles" />} />
+        <Route path="nav" element={<Navigation />} />
+        <Route path="articles" element={<ArticlesManager />}>
+          <Route path="/articles/" element={<ArticlesList />} />
+          <Route
+            path="/articles/:article_id"
+            element={<DetailedArticleCard />}
+          />
+        </Route>
       </Routes>
     </>
   );
