@@ -13,13 +13,19 @@ export const getArticles = (article_id) => {
   });
 };
 
-export const getComments = (article_id) => {
+export const getCommentsById = (article_id) => {
   let endpointURl = `https://nc-news-da.onrender.com/api/articles/${article_id}/comments`;
   return axios.get(endpointURl).then((response)=>{
     return response.data;
   })
-
 }
+
+export const patchArticle = (article_id, updatedArticle) => {
+  let endpointURl = `https://nc-news-da.onrender.com/api/articles/${article_id}`;
+    return axios.patch(endpointURl, updatedArticle).then((response) => {
+      return response.data;
+    });
+};
 
 
 

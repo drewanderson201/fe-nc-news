@@ -53,11 +53,28 @@ header {
   margin-right: 5px;
 }
 
-.comments-button {
+.article-button {
   background-color: lightgrey;
   border: none;
-  padding: 5px;
+  padding: 7px;
+  margin-bottom: 10px;
 }
+
+.article-likes {
+  display: inline;
+  background-color: lightgrey;
+  margin-bottom: 10px;
+}
+
+.likes-divider {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+
 
 /* Comments List */
 
