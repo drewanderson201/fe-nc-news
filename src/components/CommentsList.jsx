@@ -7,7 +7,6 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 export default function CommentsList({ article_id }) {
-
   const [commentsData, setCommentsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -15,7 +14,6 @@ export default function CommentsList({ article_id }) {
   const [userCommentInput, setUserCommentInput] = useState("");
   const { loggedInUser } = useContext(UserContext);
   const [commentPosted, setCommentPosted] = useState(false);
-
 
   useEffect(() => {
     getCommentsById(article_id)
@@ -41,25 +39,37 @@ export default function CommentsList({ article_id }) {
 
   const handleCommentPost = (event) => {
     event.preventDefault();
-    
+
     const newCommentRequestBody = {
       username: loggedInUser.username,
       body: userCommentInput,
     };
 
-    postComment(article_id, newCommentRequestBody).then((data) => {
-      setError(null);
-    }).catch((error)=>{
-      const errMsg = error.response.data.msg;
-      setIsError(true);
-      setError(errMsg);
-      setCommentPosted(false);
-    });
+    const dateTimeNow = new Date();
+    const tempCommentID = `${loggedInUser.username}-${dateTimeNow}`;
 
-    const dateTimeNow = new Date()
+    postComment(article_id, newCommentRequestBody)
+      .then(({comment}) => {
+        setError(null);
+        const newCommentID = comment.comment_id;
+        setCommentsData((currentComments) => {
+          console.log(currentComments)
+          const updatedComments = [...currentComments];
+          const tempCommentIndex = updatedComments.findIndex((comment) => comment.comment_id === tempCommentID)
+          updatedComments[tempCommentIndex].comment_id = newCommentID
+          return updatedComments;
+        });
+
+      })
+      .catch((error) => {
+        const errMsg = error.response.data.msg;
+        setIsError(true);
+        setError(errMsg);
+        setCommentPosted(false);
+      });
 
     const tempComment = {
-      comment_id: `${loggedInUser.username}-${dateTimeNow}`,
+      comment_id: tempCommentID,
       body: userCommentInput,
       article_id: article_id,
       author: loggedInUser.username,
@@ -67,12 +77,12 @@ export default function CommentsList({ article_id }) {
       created_at: dateTimeNow,
     };
 
-    setCommentsData((currentComments)=>{
+    setCommentsData((currentComments) => {
       return [tempComment, ...currentComments];
-    })
-    setCommentPosted(true)
-    setUserCommentInput("")
-  }
+    });
+    setCommentPosted(true);
+    setUserCommentInput("");
+  };
 
   return (
     <div>
@@ -85,7 +95,7 @@ export default function CommentsList({ article_id }) {
           type="textarea"
           value={userCommentInput}
           onChange={handleUserCommentChange}
-          maxlength="100"
+          maxLength="100"
           required
         ></textarea>
         <button type="submit" className="comment-button">
@@ -97,7 +107,13 @@ export default function CommentsList({ article_id }) {
       ) : null}
       <ul className="article-comments-list">
         {commentsData.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return (
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              setCommentsData={setCommentsData}
+            />
+          );
         })}
       </ul>
     </div>

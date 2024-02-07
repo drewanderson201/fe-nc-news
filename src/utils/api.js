@@ -32,8 +32,15 @@ export const postComment = (article_id, newComment) => {
     return axios.post(endpointURl, newComment).then((response) => {
       return response.data;
     });
-
 };
+
+export const deleteComment = (comment_id) => {
+      let endpointURl = `https://nc-news-da.onrender.com/api/comments/${comment_id}`;
+      return axios.delete(endpointURl).then((response)=>{
+        return response
+      })
+
+}
 
 
 
