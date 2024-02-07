@@ -27,5 +27,13 @@ export const patchArticle = (article_id, updatedArticle) => {
     });
 };
 
+export const postComment = (article_id, newComment) => {
+    let endpointURl = `https://nc-news-da.onrender.com/api/articles/${article_id}/comments`;
+    return axios.post(endpointURl, newComment).then((response) => {
+      return response.data;
+    });
+
+};
+
 
 

@@ -1,38 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 import Header from "./components/Header";
-import ArticlesManager from './components/ArticlesManager';
-import Navigation from './components/Navigation';
-import ArticlesList from "./components/ArticlesList"
+import ArticlesManager from "./components/ArticlesManager";
+import Navigation from "./components/Navigation";
+import ArticlesList from "./components/ArticlesList";
 import DetailedArticleCard from "./components/DetailedArticleCard";
-
-import { Routes, Route, Navigate} from "react-router-dom";
-
-
-
-
+import { Routes, Route, Navigate } from "react-router-dom";
+import UserContext from "./contexts/UserContext";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [loggedInUser, setLoggedInUser] = useState({
+    username: "tickle122",
+    name: "Tom Tickle",
+    avatar_url:
+      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
+  });
 
   return (
     <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="/articles" />} />
-        <Route path="nav" element={<Navigation />} />
-        <Route path="articles" element={<ArticlesManager />}>
-          <Route path="/articles/" element={<ArticlesList />} />
-          <Route
-            path="/articles/:article_id"
-            element={<DetailedArticleCard />}
-          />
-        </Route>
-      </Routes>
+      <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Navigate to="/articles" />} />
+          <Route path="nav" element={<Navigation />} />
+          <Route path="articles" element={<ArticlesManager />}>
+            <Route path="/articles/" element={<ArticlesList />} />
+            <Route
+              path="/articles/:article_id"
+              element={<DetailedArticleCard />}
+            />
+          </Route>
+        </Routes>
+      </UserContext.Provider>
     </>
   );
 }
 
-export default App
+export default App;
