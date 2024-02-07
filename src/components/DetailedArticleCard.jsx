@@ -43,6 +43,7 @@ export default function DetailedArticleCard() {
 
   const handleVote = (voteNum) => {
     const updatedArticle = { inc_votes: voteNum };
+    
     patchArticle(article_id, updatedArticle).then((data) => {
       setError(null)
     }).catch((error)=>{
@@ -53,13 +54,14 @@ export default function DetailedArticleCard() {
       const errMsg = error.response.data.msg;
       setError(errMsg);
     });
+
     setArticle((currentArticle)=>{
       return { ...currentArticle, votes: currentArticle.votes + voteNum };
     })
   }
 
   return (
-    <div>
+    <div className="detailed-article">
       <hr />
 
       <div>

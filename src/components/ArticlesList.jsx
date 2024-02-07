@@ -33,7 +33,7 @@ export default function ArticlesList() {
   return (
     <div>
       <h2>Articles</h2>
-      <ul>
+      <ul className="articles-list">
         <hr />
         {articlesData.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;

@@ -4,15 +4,42 @@
 
 header {
   background-color: yellow;
+  text-align: center;
 }
 
-.link-header-title {
-  text-decoration: none;
-  color: black;
+.header-nav {
+  display: inline;
+  float: left;
 }
 
 .header-title {
   text-align: center;
+  display: inline;
+  font-size: 2.5rem;
+}
+
+.header-title-link{
+  display: inline;
+  text-decoration: none;
+  color: black;
+}
+
+.header-user{
+  display: inline;
+  font-size: 0.75rem;
+
+}
+
+.user-avatar-img {
+  float: right;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border:1px solid black;
+}
+
+.user-avatar-username{
+  display: block;
 }
 
 /* Articles Manager Component */
@@ -21,10 +48,19 @@ header {
   padding: 10px;
 }
 
+/* Articles Manager Component */
+
+.articles-list {
+  padding: 0px;
+  margin: 15px;
+}
+
+
 /* Article Card Component */
 
 .img-article-list {
-  width: 75%;
+  width: 90%;
+  max-width: 600px;
 }
 
 .link-article-list {
@@ -34,8 +70,13 @@ header {
 
 /* Detailed Article Component */
 
+.detailed-article {
+  margin: 15px;
+}
+
 .img-article-main {
-  width: 90%;
+max-width: 600px;
+width: 90%;
 }
 
 .article-details {
@@ -73,13 +114,33 @@ header {
   margin-right: 5px;
 }
 
-
-
-
 /* Comments List */
 
 .article-comments-list {
   padding: 0px;
+}
+
+#comment-input {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  max-width: 500px;
+  height: 63px;
+}
+
+.comment-button {
+  background-color: lightgrey;
+  border: none;
+  padding: 7px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  display: block;
+}
+
+.success-msg{
+  background-color: yellow;
+  padding: 5px;
 }
 
 /* Comment Card */
@@ -91,22 +152,21 @@ header {
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.comment-author{
+.comment-author {
   font-weight: 700;
   margin-top: 5px;
   margin-bottom: 5px;
-
 }
 
-.comment-body{
+.comment-body {
   font-size: 0.75rem;
 }
 
-.comment-created{
+.comment-created {
   font-size: 0.7rem;
 }
 
-.comment-votes{
+.comment-votes {
   font-size: 0.7rem;
 }
 
