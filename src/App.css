@@ -168,6 +168,16 @@ width: 90%;
 
 .comment-votes {
   font-size: 0.7rem;
+  display: inline;
+}
+
+.comment-delete-button{
+  background-color: white;
+  border: none;
+  float: right;
+  padding: 3px;
+  margin-right: 5px;
+  display: inline;
 }
 
 /* #root {
