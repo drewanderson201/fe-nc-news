@@ -23,7 +23,7 @@ export default function ArticleCard({ article }) {
           <p>Votes: {article.votes}</p>
         </div>
       </Link>
-      <hr />
+      <hr className="articles-divider" />
     </>
   );
 }

@@ -6,9 +6,10 @@ export default function Header() {
   const {loggedInUser} = useContext(UserContext)
   return (
     <header className="header-header-bar">
-
       <Link to="/nav" className="header-nav">
-        <button>Nav</button>
+        <div className="header-burger"></div>
+        <div className="header-burger"></div>
+        <div className="header-burger"></div>
       </Link>
 
       <Link to="/" className="header-title-link">
@@ -16,12 +17,12 @@ export default function Header() {
       </Link>
 
       <div className="header-user">
-        {/* <p className="user-avatar-username">{loggedInUser.username}</p> */}
         <img
           className="user-avatar-img"
           alt={`Avatar of logged in user`}
           src={loggedInUser.avatar_url}
         />
+        <p className="user-avatar-username">{loggedInUser.username}</p>
       </div>
     </header>
   );
