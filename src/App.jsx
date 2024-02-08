@@ -7,6 +7,7 @@ import ArticlesManager from "./components/ArticlesManager";
 import Navigation from "./components/Navigation";
 import ArticlesList from "./components/ArticlesList";
 import DetailedArticleCard from "./components/DetailedArticleCard";
+import Error from "./components/Error";
 import { Routes, Route, Navigate } from "react-router-dom";
 import UserContext from "./contexts/UserContext";
 
@@ -24,14 +25,12 @@ function App() {
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <Header />
         <Routes>
+          <Route path="*" element={<Error error={"404: Page Not Found"}/>} />
           <Route path="/" element={<Navigate to="/articles" />} />
           <Route path="nav" element={<Navigation />}></Route>
           <Route path="articles" element={<ArticlesManager />}>
             <Route path="/articles/" element={<ArticlesList />} />
-            <Route
-              path="/articles/topic/:topic"
-              element={<ArticlesList />}
-            />
+            <Route path="/articles/topic/:topic" element={<ArticlesList />} />
 
             <Route
               path="/articles/:article_id"
