@@ -50,3 +50,10 @@ export const getTopics = () => {
     return response.data;
   });
 };
+
+export const getUsers = () => {
+  let endpointUrl = "https://nc-news-da.onrender.com/api/users";
+  return axios.get(endpointUrl).then((response) => {
+    return response.data;
+  });
+}

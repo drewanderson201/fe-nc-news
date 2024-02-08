@@ -3,6 +3,7 @@ import { postComment } from "../utils/api";
 import Error from "./Error";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { Link, useLocation } from "react-router-dom";
 
 
 export default function CommentForm({ article_id, setCommentsData }) {
@@ -11,6 +12,8 @@ export default function CommentForm({ article_id, setCommentsData }) {
   const [userCommentInput, setUserCommentInput] = useState("");
   const { loggedInUser } = useContext(UserContext);
   const [commentPosted, setCommentPosted] = useState(false);
+  const location = useLocation();
+
 
   if (isError) return <Error error={error} />;
 
@@ -66,24 +69,41 @@ export default function CommentForm({ article_id, setCommentsData }) {
   return (
     <div>
       <h3>Comments</h3>
-      <p>You're signed in as {loggedInUser.username}</p>
-      <form onSubmit={handleCommentPost}>
-        <label htmlFor="comment-input">Add your comment...</label>
-        <textarea
-          id="comment-input"
-          type="textarea"
-          value={userCommentInput}
-          onChange={handleUserCommentChange}
-          maxLength="100"
-          required
-        ></textarea>
-        <button type="submit" className="comment-button">
-          Post
-        </button>
-      </form>
-      {commentPosted ? (
-        <p className="success-msg">Thanks for your comment!</p>
-      ) : null}
+      {loggedInUser.username !== undefined ? (
+        <>
+          <p>
+            You're signed in as {loggedInUser.username}. To change user click{" "}
+            <Link to="/users" state={{ from: location.pathname }}>
+              here.
+            </Link>
+          </p>
+          <form onSubmit={handleCommentPost}>
+            <label htmlFor="comment-input">Add your comment...</label>
+            <textarea
+              id="comment-input"
+              type="textarea"
+              value={userCommentInput}
+              onChange={handleUserCommentChange}
+              maxLength="100"
+              required
+            ></textarea>
+            <button type="submit" className="comment-button">
+              Post
+            </button>
+          </form>
+          {commentPosted ? (
+            <p className="success-msg">Thanks for your comment!</p>
+          ) : null}
+        </>
+      ) : (
+        <p>
+          If you would like to post a comment please{" "}
+          <Link to="/users" state={{ from: location.pathname }}>
+            select a user
+          </Link>{" "}
+          first.
+        </p>
+      )}
     </div>
   );
 }

@@ -10,24 +10,20 @@ import DetailedArticleCard from "./components/DetailedArticleCard";
 import Error from "./components/Error";
 import { Routes, Route, Navigate } from "react-router-dom";
 import UserContext from "./contexts/UserContext";
+import UserList from "./components/UsersList";
 
 function App() {
-
-  const [loggedInUser, setLoggedInUser] = useState({
-    username: "tickle122",
-    name: "Tom Tickle",
-    avatar_url:
-      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
-  });
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
     <>
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
         <Header />
         <Routes>
-          <Route path="*" element={<Error error={"404: Page Not Found"}/>} />
+          <Route path="*" element={<Error error={"404: Page Not Found"} />} />
           <Route path="/" element={<Navigate to="/articles" />} />
           <Route path="nav" element={<Navigation />}></Route>
+          <Route path="users" element={<UserList />}></Route>
           <Route path="articles" element={<ArticlesManager />}>
             <Route path="/articles/" element={<ArticlesList />} />
             <Route path="/articles/topic/:topic" element={<ArticlesList />} />

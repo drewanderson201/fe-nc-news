@@ -7,15 +7,7 @@ import { Link } from "react-router-dom";
 
 
 export default function Navigation() {
-    const [topicData, setTopicData] = useState([
-{
-"slug": "coding",
-"description": "Code is love, code is life"
-},
-{
-"slug": "football",
-"description": "FOOTIE!"
-}]);
+    const [topicData, setTopicData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);

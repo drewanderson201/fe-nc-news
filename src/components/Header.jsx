@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import {UserContext} from "../contexts/UserContext";
 
 export default function Header() {
   const {loggedInUser} = useContext(UserContext)
+    const location = useLocation();
+
   return (
     <header className="header-header-bar">
       <Link to="/nav" className="header-nav">
@@ -16,14 +18,22 @@ export default function Header() {
         <h1 className="header-title">NC News</h1>
       </Link>
 
-      <div className="header-user">
-        <img
-          className="user-avatar-img"
-          alt={`Avatar of logged in user`}
-          src={loggedInUser.avatar_url}
-        />
-        <p className="user-avatar-username">{loggedInUser.username}</p>
-      </div>
+      <Link to="/users" className="header-user header-user-link" state={{ from: location.pathname }}>
+        <div className="header-user">
+          {loggedInUser.username !== undefined ? (
+            <>
+              <img
+                className="header-avatar-img"
+                alt={`Avatar of logged in user`}
+                src={loggedInUser.avatar_url}
+              />
+              <p className="user-avatar-username">{loggedInUser.username}</p>
+            </>
+          ) : (
+            <p>Log In</p>
+          )}
+        </div>
+      </Link>
     </header>
   );
 }
