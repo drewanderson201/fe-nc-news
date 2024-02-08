@@ -12,13 +12,15 @@ export default function ArticlesList() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [orderBy, setOrderBy] = useState("desc");
+ 
   const {topic} = useParams()
 
   const [searchParams, setSearchParams] = useSearchParams()
   const sortByQuery = searchParams.get("sort-by");
   const orderQuery = searchParams.get("order-by");
+  const [sortBy, setSortBy] = useState(sortByQuery || "created_at");
+  const [orderBy, setOrderBy] = useState(orderQuery||"desc");
+
 
   const sortByDropdown = {
     label: "Sort By:",
