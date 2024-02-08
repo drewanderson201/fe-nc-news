@@ -25,9 +25,14 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Navigate to="/articles" />} />
-          <Route path="nav" element={<Navigation />} />
+          <Route path="nav" element={<Navigation />}></Route>
           <Route path="articles" element={<ArticlesManager />}>
             <Route path="/articles/" element={<ArticlesList />} />
+            <Route
+              path="/articles/topic/:topic"
+              element={<ArticlesList />}
+            />
+
             <Route
               path="/articles/:article_id"
               element={<DetailedArticleCard />}

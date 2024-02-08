@@ -5,35 +5,48 @@
 header {
   background-color: yellow;
   text-align: center;
+  display: flex;
+  height: 5rem;
 }
 
 .header-nav {
   display: inline;
   float: left;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 2.5%;
+
 }
 
 .header-title {
-  text-align: center;
   display: inline;
-  font-size: 2.5rem;
+  font-size: 2.5
+  rem;
+  
+
 }
 
 .header-title-link{
   display: inline;
   text-decoration: none;
   color: black;
+  margin: auto
 }
 
 .header-user{
   display: inline;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  margin-right: 2.5%;
+  margin-top: auto;
+  margin-bottom: auto;
 
 }
 
 .user-avatar-img {
   float: right;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border:1px solid black;
 }
@@ -42,17 +55,47 @@ header {
   display: block;
 }
 
+.header-burger{
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+/* Navigation Component */
+
+.navigation-header{
+  padding-left: 20px;
+}
+
+.topic-link{
+    color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.topics-divider {
+  height: 2px;
+  background-color: black;
+  margin: 25px;
+}
+
 /* Articles Manager Component */
 
 .articles-manager {
   padding: 10px;
 }
 
-/* Articles Manager Component */
+/* Articles List Component */
 
 .articles-list {
   padding: 0px;
   margin: 15px;
+}
+
+.articles-divider {
+  height: 2px;
+  background-color: black;
 }
 
 
@@ -61,6 +104,7 @@ header {
 .img-article-list {
   width: 90%;
   max-width: 600px;
+  margin-top: 10px;
 }
 
 .link-article-list {
@@ -178,6 +222,15 @@ width: 90%;
   padding: 3px;
   margin-right: 5px;
   display: inline;
+}
+
+.comment-deleted-msg {
+  padding: 5px;
+  list-style: none;
+  background-color: lightgrey;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
 }
 
 /* #root {

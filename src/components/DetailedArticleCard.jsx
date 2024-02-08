@@ -62,7 +62,7 @@ export default function DetailedArticleCard() {
 
   return (
     <div className="detailed-article">
-      <hr />
+      <hr className="articles-divider" />
 
       <div>
         <p className="article-details">{formattedTopic}</p>
