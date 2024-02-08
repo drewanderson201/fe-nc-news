@@ -115,11 +115,11 @@ header {
   margin-right: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 175px;
+  width: 200px;
 }
 .dropdown-select {
   float: right;
-  margin-right: 10px;
+  margin-right: 5px;
   border: none;
   background-color: lightgrey;
   position: bottom;
