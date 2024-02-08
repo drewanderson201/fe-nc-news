@@ -25,7 +25,7 @@ export default function ArticlesList() {
     id: "sort-by",
     options: [
       ["date created", "created_at"],
-      ["column count", "comment_count"],
+      ["comment count", "comment_count"],
       ["vote count", "votes"],
       ["author", "author"],
       ["topic", "topic"],
