@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getArticles = (article_id, topic) => {
+export const getArticles = (article_id, topic, sortBy, orderBy) => {
   let endpointUrl = "https://nc-news-da.onrender.com/api/articles";
   article_id !== undefined ? (endpointUrl += `/${article_id}`) : null;
 
@@ -8,7 +8,9 @@ export const getArticles = (article_id, topic) => {
   endpointUrl += "?limit=100";
 
   return axios
-    .get(endpointUrl, { params: { topic: topic } })
+    .get(endpointUrl, {
+      params: { topic: topic, sort_by: sortBy, order_by: orderBy },
+    })
     .then((response) => {
       return response.data;
     });
