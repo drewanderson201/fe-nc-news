@@ -1,14 +1,17 @@
 import { Link, } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function ArticleCard({ article }) {
-
+  const { theme } = useContext(ThemeContext);
   const formattedTopic = article.topic[0].toUpperCase() + article.topic.slice(1).toLowerCase();
   const formattedDate = new Date(article.created_at).toDateString();
+  
   return (
     <>
       <Link
         to={`/articles/${article.article_id}`}
-        className="link-article-list"
+        className={`link-article-list ${theme}`}
       >
         <div>
           <img
@@ -24,7 +27,7 @@ export default function ArticleCard({ article }) {
           <p>Votes: {article.votes}</p>
         </div>
       </Link>
-      <hr className="articles-divider" />
+      <hr className={`articles-divider-${theme}`} />
     </>
   );
 }

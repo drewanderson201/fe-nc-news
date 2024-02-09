@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
-import {UserContext} from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
+import ThemeButton from "./ThemeButton";
 
 export default function Header() {
-  const {loggedInUser} = useContext(UserContext)
-    const location = useLocation();
+  const { loggedInUser } = useContext(UserContext);
+  const location = useLocation();
 
   return (
     <header className="header-header-bar">
@@ -18,7 +19,11 @@ export default function Header() {
         <h1 className="header-title">NC News</h1>
       </Link>
 
-      <Link to="/users" className="header-user header-user-link" state={{ from: location.pathname }}>
+      <Link
+        to="/users"
+        className="header-user header-user-link"
+        state={{ from: location.pathname }}
+      >
         <div className="header-user">
           {loggedInUser.username !== undefined ? (
             <>
@@ -34,6 +39,7 @@ export default function Header() {
           )}
         </div>
       </Link>
+      <ThemeButton />
     </header>
   );
 }

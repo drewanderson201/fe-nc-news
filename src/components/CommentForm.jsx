@@ -4,6 +4,7 @@ import Error from "./Error";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 
 export default function CommentForm({ article_id, setCommentsData }) {
@@ -13,6 +14,8 @@ export default function CommentForm({ article_id, setCommentsData }) {
   const { loggedInUser } = useContext(UserContext);
   const [commentPosted, setCommentPosted] = useState(false);
   const location = useLocation();
+  const { theme } = useContext(ThemeContext);
+
 
 
   if (isError) return <Error error={error} />;
@@ -73,7 +76,11 @@ export default function CommentForm({ article_id, setCommentsData }) {
         <>
           <p>
             You're signed in as {loggedInUser.username}. To change user click{" "}
-            <Link to="/users" state={{ from: location.pathname }}>
+            <Link
+              to="/users"
+              state={{ from: location.pathname }}
+              className={`comment-form-link-${theme}`}
+            >
               here.
             </Link>
           </p>
@@ -98,7 +105,11 @@ export default function CommentForm({ article_id, setCommentsData }) {
       ) : (
         <p>
           If you would like to post a comment please{" "}
-          <Link to="/users" state={{ from: location.pathname }}>
+          <Link
+            to="/users"
+            state={{ from: location.pathname }}
+            className={`comment-form-link-${theme}`}
+          >
             select a user
           </Link>{" "}
           first.

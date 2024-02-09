@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import ArticlesManager from "./components/ArticlesManager";
 import Navigation from "./components/Navigation";
 import ArticlesList from "./components/ArticlesList";
@@ -10,14 +11,18 @@ import DetailedArticleCard from "./components/DetailedArticleCard";
 import Error from "./components/Error";
 import { Routes, Route, Navigate } from "react-router-dom";
 import UserContext from "./contexts/UserContext";
+import ThemeContext from "./contexts/ThemeContext";
 import UserList from "./components/UsersList";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [theme, setTheme] = useState("light");
+
 
   return (
     <>
       <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
+        <ThemeContext.Provider value={{theme, setTheme}}>
         <Header />
         <Routes>
           <Route path="*" element={<Error error={"404: Page Not Found"} />} />
@@ -34,6 +39,8 @@ function App() {
             />
           </Route>
         </Routes>
+        <Footer/>
+        </ThemeContext.Provider>
       </UserContext.Provider>
     </>
   );

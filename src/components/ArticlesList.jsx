@@ -6,6 +6,8 @@ import PaginationButton from "./PaginationButton";
 import { useState, useEffect } from "react";
 import { getArticles } from "../utils/api";
 import { useParams, useSearchParams } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function ArticlesList() {
   const [articlesData, setArticlesData] = useState([]);
@@ -13,14 +15,14 @@ export default function ArticlesList() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
-
   const { topic } = useParams();
-
   const [searchParams, setSearchParams] = useSearchParams();
   const sortByQuery = searchParams.get("sort-by");
   const orderQuery = searchParams.get("order-by");
   const limitQuery = searchParams.get("limit");
   const pageQuery = searchParams.get("p");
+  const { theme } = useContext(ThemeContext);
+
 
 
   const [sortBy, setSortBy] = useState(sortByQuery || "created_at");
@@ -144,7 +146,7 @@ for (let i = 1; i <= totalPageCount; i++) {
         <p>Sorry there are currently no articles for this topic</p>
       ) : (
         <ul className="articles-list">
-          <hr className="articles-divider" />
+          <hr className={`articles-divider-${theme}`} />
           {articlesData.map((article) => {
             return <ArticleCard article={article} key={article.article_id} />;
           })}

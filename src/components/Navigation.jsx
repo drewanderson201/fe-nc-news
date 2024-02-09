@@ -4,6 +4,8 @@ import Error from "./Error";
 import TopicCard from "./TopicCard";
 import { getTopics } from "../utils/api";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 
 export default function Navigation() {
@@ -11,6 +13,8 @@ export default function Navigation() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
+  const { theme } = useContext(ThemeContext);
+
 
 
     useEffect(() => {
@@ -33,18 +37,18 @@ export default function Navigation() {
     if (isError) return <Error error={error} />;
 
   return (
-    <div>
-      <hr className="topics-divider" />
+    <div className={`topics ${theme}`}>
+      <hr className={`topics-divider-${theme}`} />
       <h2 className="navigation-header">Topics</h2>
       <ul>
         <Link to={`/articles`} key="all" className="topic-link">
-          <p>All</p>
+          <p className={`${theme}`}>All</p>
         </Link>
         {topicData.map((topic) => {
           return <TopicCard key={topic.slug} topic={topic} />;
         })}
       </ul>
-      <hr className="topics-divider" />
+      <hr className={`topics-divider-${theme}`} />
     </div>
   );
 }

@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import Loading from "./Loading";
 import Error from "./Error";
-
 import { useLocation } from "react-router-dom";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function UserList() {
   const [usersData, setUsersData] = useState([]);
@@ -14,6 +14,8 @@ export default function UserList() {
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState(null);
   const { loggedInUser } = useContext(UserContext);
+  const { theme } = useContext(ThemeContext);
+
 
 
   let {state} = useLocation()
@@ -42,7 +44,7 @@ export default function UserList() {
 
 
   return (
-    <div className="users-component">
+    <div className={`users-component ${theme}`}>
       <hr />
       <h2>Users</h2>
       {loggedInUser.username !== undefined ? (
