@@ -16,7 +16,10 @@ import UserList from "./components/UsersList";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-  const [theme, setTheme] = useState("light");
+  const savedTheme = localStorage.getItem("theme")
+  const startUpTheme = savedTheme !== null ? savedTheme : "light";
+  const [theme, setTheme] = useState(startUpTheme);
+
 
 
   return (

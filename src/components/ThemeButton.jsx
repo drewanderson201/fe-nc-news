@@ -6,9 +6,11 @@ export default function ThemeButton() {
 
   const toggleTheme = () => {
     setTheme((currentTheme)=>{
-        return currentTheme === "light"?"dark":"light";
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+        console.log("new theme after button click >>> ", newTheme)
+        localStorage.setItem("theme", newTheme);
+        return newTheme;
     })
-    console.log("click")
   }
 
   return (
