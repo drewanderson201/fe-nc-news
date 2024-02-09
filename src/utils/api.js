@@ -1,15 +1,18 @@
 import axios from "axios";
 
-export const getArticles = (article_id, topic, sortBy, orderBy) => {
+export const getArticles = (article_id, topic, sortBy, orderBy, limitBy, pageBy) => {
   let endpointUrl = "https://nc-news-da.onrender.com/api/articles";
   article_id !== undefined ? (endpointUrl += `/${article_id}`) : null;
 
-  //overwrite api default limit of 10 while pagination is not yet implemented on front end
-  endpointUrl += "?limit=100";
-
   return axios
     .get(endpointUrl, {
-      params: { topic: topic, sort_by: sortBy, order_by: orderBy },
+      params: {
+        topic: topic,
+        sort_by: sortBy,
+        order_by: orderBy,
+        limit: limitBy,
+        p: pageBy,
+      },
     })
     .then((response) => {
       return response.data;

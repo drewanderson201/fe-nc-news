@@ -4,12 +4,17 @@ export default function Dropdown({
   setStateValue,
   searchParams,
   setSearchParams,
+  resetState,
 }) {
   const handleChange = (event) => {
     setStateValue(event.target.value);
     const newParams = new URLSearchParams(searchParams);
     newParams.set(dropdownConfig.id, event.target.value);
-    setSearchParams(newParams)
+    if (resetState) {
+      resetState(0);
+      newParams.set("p", 1);
+    }
+    setSearchParams(newParams);
   };
 
   return (
@@ -24,7 +29,11 @@ export default function Dropdown({
       >
         {dropdownConfig.options.map((option) => {
           return (
-            <option key={option[1]} value={option[1]} className="dropdown-option">
+            <option
+              key={option[1]}
+              value={option[1]}
+              className="dropdown-option"
+            >
               {option[0]}
             </option>
           );

@@ -107,9 +107,13 @@ header {
 .articles-header {
   margin-top: 10px;
   margin-bottom: 10px;
-
-
 }
+
+.articles-total-result {
+  display: block;
+}
+
+
 
 /* Dropdown Component */
 
@@ -148,6 +152,23 @@ header {
 .link-article-list {
   color: black;
   text-decoration: none;
+}
+
+/* Pagination Button Component */
+
+.button-pagination {
+  
+  background-color: lightgrey;
+  border: none;
+  padding: 7px;
+  margin-bottom: 10px;
+  margin-right: 7px;
+}
+
+.button-pagination-current {
+  
+  border: 3px solid yellow;
+
 }
 
 /* Detailed Article Component */
