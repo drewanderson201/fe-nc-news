@@ -4,6 +4,8 @@ import { getArticles, patchArticle } from "../utils/api";
 import Loading from "./Loading";
 import Error from "./Error";
 import CommentsList from "./CommentsList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function DetailedArticleCard() {
@@ -88,7 +90,7 @@ export default function DetailedArticleCard() {
           handleVote(1);
         }}
       >
-        <p className="article-likes">Like</p>
+        <FontAwesomeIcon icon={faThumbsUp} size="3x" />
       </button>
       <span className="likes-divider"></span>
       <button
@@ -97,7 +99,7 @@ export default function DetailedArticleCard() {
           handleVote(-1);
         }}
       >
-        <p className="article-likes">Dislike</p>
+        <FontAwesomeIcon icon={faThumbsDown} size="3x" />
       </button>
       <div>
         <button className="article-button" onClick={handleCommentsButton}>

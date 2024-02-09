@@ -2,6 +2,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import ThemeButton from "./ThemeButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+
 
 export default function Header() {
   const { loggedInUser } = useContext(UserContext);
@@ -35,7 +39,7 @@ export default function Header() {
               <p className="user-avatar-username">{loggedInUser.username}</p>
             </>
           ) : (
-            <p>Log In</p>
+            <FontAwesomeIcon icon={faUser} size="2xl" />
           )}
         </div>
       </Link>
